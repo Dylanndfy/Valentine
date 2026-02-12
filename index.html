@@ -78,7 +78,7 @@
 <body>
 
     <div class="main-card">
-        <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGlvbm53Z3ZqNjV6bmZycTNreXBtN3R6eWJ3bm92ZzRxdjUzdXphJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v6aOjy0WJD1Id8AyrS/giphy.gif" width="150">
+        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGlvbm53Z3ZqNjV6bmZycTNreXBtN3R6eWJ3bm92ZzRxdjUzdXphJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v6aOjy0WJD1Id8AyrS/giphy.gif" width="150">
         <h1>Will you be my Valentine?</h1>
         <p>I have a purr-fectly special day planned!</p>
         
@@ -93,10 +93,9 @@
 
     <script>
         const catImages = [
-            'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJndXp4ZzB3eXN6eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/5atP7M3oN9J2Yl8Bf3/giphy.gif',
-            'https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnptbjV2OHR4N2Z5Z3Z4ZzB3eXN6eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/mdS8v3Q15G7rYf6z0v/giphy.gif'
-        ];
-
+    'https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJndXp4ZzB3eXN6eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/5atP7M3oN9J2Yl8Bf3/giphy.gif',
+    'https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnptbjV2OHR4N2Z5Z3Z4ZzB3eXN6eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/mdS8v3Q15G7rYf6z0v/giphy.gif'
+];
         // Create independent floating cats
         function createFloatingCat() {
             const cat = document.createElement('img');
@@ -113,7 +112,7 @@
             cat.style.top = posY + 'px';
             document.body.appendChild(cat);
 
-            // Click cat for sound
+   // Click cat for sound
             cat.onclick = () => {
                 document.getElementById('meowSound').play();
                 cat.style.transform = 'scale(1.5) rotate(360deg)';
