@@ -36,7 +36,7 @@
             max-width: 350px;
         }
 
-        h1 { color: #ff1493; margin: 10px 0; font-size: 1.8rem; }
+        h1 { color: #ff1493; margin: 10px 0; font-size: 1.6rem; line-height: 1.2; }
         p { color: #ff69b4; font-size: 1rem; }
 
         .btn-group {
@@ -56,7 +56,7 @@
         }
 
         #yesBtn { background: #ff69b4; color: white; }
-        #noBtn { background: #ffe4e1; color: #ff69b4; position: relative; }
+        #noBtn { background: #ffe4e1; color: #ff69b4; position: relative; transition: 0.1s; }
 
         .heart {
             position: absolute;
@@ -73,7 +73,7 @@
 
     <div class="main-card">
         <img id="mainImage" src="https://i.imgur.com/vHqS9n8.gif" width="180" alt="Chibi Cat">
-        <h1>Will you be my Valentine?</h1>
+        <h1>Will kau be aku valentines Boo?</h1>
         <p>I have a purr-fectly special day planned!</p>
         
         <div class="btn-group">
@@ -125,11 +125,14 @@
 
         for(let i=0; i<5; i++) { createFloatingCat(); }
 
+        // Logic to make "No" jump every time it is interacted with
         function dodge() {
             const btn = document.getElementById('noBtn');
             btn.style.position = 'fixed';
-            btn.style.left = Math.random() * 70 + 'vw';
-            btn.style.top = Math.random() * 70 + 'vh';
+            const x = Math.random() * (window.innerWidth - btn.offsetWidth);
+            const y = Math.random() * (window.innerHeight - btn.offsetHeight);
+            btn.style.left = x + 'px';
+            btn.style.top = y + 'px';
         }
 
         function celebrate() {
@@ -152,5 +155,4 @@
         }
     </script>
 </body>
-    </html>
-    
+</html>
