@@ -16,36 +16,31 @@
             overflow: hidden;
         }
 
-        /* Floating Chibi Cats */
         .floating-cat {
             position: absolute;
             width: 80px;
             cursor: pointer;
             z-index: 1;
             transition: transform 0.3s ease;
-            filter: drop-shadow(0 5px 5px rgba(0,0,0,0.1));
-        }
-
-        .floating-cat:hover {
-            transform: scale(1.2) rotate(10deg);
         }
 
         .main-card {
             background: white;
-            padding: 40px;
+            padding: 30px;
             border-radius: 30px;
             box-shadow: 0 15px 35px rgba(255, 105, 180, 0.2);
             border: 4px dashed #ffb6c1;
             text-align: center;
             z-index: 10;
-            max-width: 400px;
+            width: 85%;
+            max-width: 350px;
         }
 
-        h1 { color: #ff1493; margin-bottom: 10px; }
-        p { color: #ff69b4; font-size: 1.1rem; }
+        h1 { color: #ff1493; margin: 10px 0; font-size: 1.8rem; }
+        p { color: #ff69b4; font-size: 1rem; }
 
         .btn-group {
-            margin-top: 30px;
+            margin-top: 20px;
             display: flex;
             justify-content: center;
             gap: 15px;
@@ -53,18 +48,17 @@
 
         button {
             padding: 12px 25px;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             border-radius: 20px;
             border: none;
             cursor: pointer;
             font-weight: bold;
-            transition: 0.2s;
         }
 
         #yesBtn { background: #ff69b4; color: white; }
-        #noBtn { background: #ffe4e1; color: #ff69b4; }
+        #noBtn { background: #ffe4e1; color: #ff69b4; position: relative; }
 
-        .confetti {
+        .heart {
             position: absolute;
             font-size: 25px;
             animation: fall 3s linear forwards;
@@ -78,13 +72,13 @@
 <body>
 
     <div class="main-card">
-        <img src="https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGlvbm53Z3ZqNjV6bmZycTNreXBtN3R6eWJ3bm92ZzRxdjUzdXphJmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/v6aOjy0WJD1Id8AyrS/giphy.gif" width="150">
+        <img id="mainImage" src="https://i.imgur.com/vHqS9n8.gif" width="180" alt="Chibi Cat">
         <h1>Will you be my Valentine?</h1>
         <p>I have a purr-fectly special day planned!</p>
         
         <div class="btn-group">
             <button id="yesBtn" onclick="celebrate()">Yes!</button>
-            <button id="noBtn" onmouseover="dodge()">No</button>
+            <button id="noBtn" onmouseover="dodge()" onclick="dodge()">No</button>
         </div>
     </div>
 
@@ -93,40 +87,35 @@
 
     <script>
         const catImages = [
-    'https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExNHJndXp4ZzB3eXN6eHh4eHh4eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/5atP7M3oN9J2Yl8Bf3/giphy.gif',
-    'https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnptbjV2OHR4N2Z5Z3Z4ZzB3eXN6eHh4eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/mdS8v3Q15G7rYf6z0v/giphy.gif'
-];
-        // Create independent floating cats
+            'https://i.imgur.com/vHqS9n8.gif',
+            'https://i.imgur.com/v6GvQAn.gif'
+        ];
+
         function createFloatingCat() {
             const cat = document.createElement('img');
             cat.src = catImages[Math.floor(Math.random() * catImages.length)];
             cat.className = 'floating-cat';
             
-            // Random start position
-            let posX = Math.random() * window.innerWidth;
-            let posY = Math.random() * window.innerHeight;
-            let speedX = (Math.random() - 0.5) * 3;
-            let speedY = (Math.random() - 0.5) * 3;
+            let posX = Math.random() * (window.innerWidth - 80);
+            let posY = Math.random() * (window.innerHeight - 80);
+            let speedX = (Math.random() - 0.5) * 2;
+            let speedY = (Math.random() - 0.5) * 2;
 
             cat.style.left = posX + 'px';
             cat.style.top = posY + 'px';
             document.body.appendChild(cat);
 
-   // Click cat for sound
             cat.onclick = () => {
                 document.getElementById('meowSound').play();
                 cat.style.transform = 'scale(1.5) rotate(360deg)';
                 setTimeout(() => cat.style.transform = 'scale(1)', 500);
             };
 
-            // Animation loop
             function move() {
                 posX += speedX;
                 posY += speedY;
-
                 if (posX < 0 || posX > window.innerWidth - 80) speedX *= -1;
                 if (posY < 0 || posY > window.innerHeight - 80) speedY *= -1;
-
                 cat.style.left = posX + 'px';
                 cat.style.top = posY + 'px';
                 requestAnimationFrame(move);
@@ -134,31 +123,26 @@
             move();
         }
 
-        // Initialize 6 floating cats
-        for(let i=0; i<6; i++) {
-            createFloatingCat();
-        }
+        for(let i=0; i<5; i++) { createFloatingCat(); }
 
         function dodge() {
             const btn = document.getElementById('noBtn');
-            btn.style.position = 'absolute';
-            btn.style.left = Math.random() * 80 + 'vw';
-            btn.style.top = Math.random() * 80 + 'vh';
+            btn.style.position = 'fixed';
+            btn.style.left = Math.random() * 70 + 'vw';
+            btn.style.top = Math.random() * 70 + 'vh';
         }
 
         function celebrate() {
             document.getElementById('successSound').play();
             const card = document.querySelector('.main-card');
             card.innerHTML = `
-                <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMnptbjV2OHR4N2Z5Z3Z4ZzB3eXN6eHh4eHh4eHh4eHh4eHh4JmVwPXYxX2ludGVybmFsX2dpZl9ieV9pZCZjdD1z/mdS8v3Q15G7rYf6z0v/giphy.gif" width="150">
+                <img src="https://i.imgur.com/v6GvQAn.gif" width="180">
                 <h1>YAY! 💖</h1>
-                <p>You've made me the happiest hooman ever!</p>
+                <p>Can't wait for our Valentine's date!</p>
             `;
-            
-            // Heart rain
             setInterval(() => {
                 const heart = document.createElement('div');
-                heart.className = 'confetti';
+                heart.className = 'heart';
                 heart.innerHTML = '🌸';
                 heart.style.left = Math.random() * 100 + 'vw';
                 heart.style.top = '-5vh';
@@ -168,5 +152,5 @@
         }
     </script>
 </body>
-  </html>
-  
+    </html>
+    
